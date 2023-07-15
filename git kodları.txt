@@ -1,1 +1,508 @@
 Git ile ilgili bilgiler eklenecek
+Komut İstemi Nasıl Açılır?
+1
+
+Klavyenizdeki
+
+Win + R
+
+tuşlarına aynı anda basınız.
+
+
+Win + R : Çalıştır (Run)
+
+2
+
+Açılan “Çalıştır” penceresindeki kutuya
+
+“cmd”
+
+yazarak “Tamam” butonuna basınız.
+
+
+Komut İstemi Penceresi Neye Benzer?
+Komut İstemi Penceresi
+Başlat » Programlar » Donatılar » Komut İstemi
+
+Şimdi ms-dos komut istemi penceremizi açtık, artık kodlarımızı birer birer öğrenmeye ve uygulamaya başlayalım:
+
+[Başa Git]
+
+1. dir
+dir
+dir (directory) komutu, bir dizindeki dosya ve klasörlerin listesini, son değiştirme zamanı ve dosya boyutlarıyla birlikte görüntüler.
+
+dir /a
+/a parametresi ile dir komutu, gizli ve sistem dosya ve dizinleri dahil olmak üzere tümünü/(a)ll listeler.
+
+dir /ah
+/ah parametresi ile dir komutu, sadece gizli/(h)idden dosya ve klasörleri listeler.
+
+dir /as
+/as parametresi ile dir komutu, sadece sistem/(s)ystem dosya ve klasörlerini listeler.
+
+dir /s
+/s parametresi ile dir komutu, içinde bulunulan dizin içindeki dosya ve dizinlerle beraber tüm altdizinlerini/(s)ub-directories ve bunların içindeki tüm dosyaları görüntüler. Diğer bir deyişle, içinde bulunulan klasörün içerdiği klasör ve dosyaların (s)ülalesini gösterir.
+
+C:\> dir /a Windows |more
+Yukarıdaki komut C: kök dizinindeyken yazılmış olup, Windows klasörü içindeki dosya ve dizinleri sayfa sayfa görüntüler. | karakteri klavyedeki “Alt GR” + “<>” tuşlarına aynı anda basılarak çıkartılır. Listede sayfa sayfa ilerlemek için “Space” tuşu, satır satır ilerlemek için “Enter” tuşuna basılır.
+
+C:\> dir >sonuc.txt
+dir komut cümlesinden ve paremetrelerinden sonra gelecek olan “>” karakteri ve sizin belirleyeğiniz dosya ismi ile komuttan gelen listeyi o isimde bulunulan dizine kaydedebilirsiniz.
+
+C:\> dir /b > dosyalar.txt
+Yukarıdaki komut ise, dosya isimlerini yalın bir şekilde listeler ve “dosyalar.txt” adıyla komutun çalıştırıldığı aynı dizine kaydeder. (Değiştirme zamanı ve dosya boyutları olmadan)
+
+Joker Karakterler
+C:\Windows>dir *e.exe
+ C sürücüsündeki birimin etiketi yok.
+ Birim Seri Numarası: 9C02-0C6D
+ 
+ C:\Windows dizini
+ 
+14.07.2009  04:39            15.360 fveupdate.exe
+14.07.2009  04:39           733.696 HelpPane.exe
+14.07.2009  04:39            10.240 write.exe
+               3 Dosya          759.296 bayt
+               0 Dizin   83.017.465.856 bayt boş
+ 
+C:\Windows>
+Yukarıdaki * (yıldız) joker karakterini kullaranarak, dosya isimlerinde bir filtreleme yaptık. * joker karakteri, okey oyunundaki gibi herhangi bir uzunluktaki herhangi bir kelime yerine geçmektedir. Yani * yerinde ne olursa olsun da dosyanın sonu e.exe ile bitsin demiş olduk.
+
+C:\Windows>dir ?????_*
+ C sürücüsündeki birimin etiketi yok.
+ Birim Seri Numarası: 9C02-0C6D
+ 
+ C:\Windows dizini
+ 
+14.07.2009  08:32    <DIR>          twain_32
+21.11.2010  06:25            51.200 twain_32.dll
+11.06.2009  00:41            49.680 twunk_16.exe
+14.07.2009  04:14            31.232 twunk_32.exe
+               3 Dosya          132.112 bayt
+               1 Dizin   83.017.420.800 bayt boş
+ 
+C:\Windows>
+Burada ise ? (soru işareti) joker karakterini kullandık. ? karakteri ise sadece herhangibir tek karakter yerine geçmektedir. ?????_* cümlesinde önce başta herhangi beş karakter bulunsun, ardından _ (alt çizgi) gelsin, sonra da ne gelirse gelsin dedik. Ve sonuçlar da aynı istediğimiz şekilde geldi.
+[Başa Git]
+
+2. cd
+C:\>cd Windows
+ 
+C:\Windows>
+cd (Change Directory) komutu, üzerinde bulunulan dizini değiştirmek için kullanılır. Örnekte C: kök dizininde iken, C:\Windows dizinine girilmiştir. “cd Windows” komutunun türkçe meali: “Windows dizinine gir” ‘dir.
+
+C:\Windows>cd..
+ 
+C:\>
+cd.. komutu ile örnekte görüldüğü gibi bir üst dizine çıktık.
+
+C:\>cd "C:\Program Files\Adobe"
+ 
+C:\Program Files\Adobe>
+cd komutundan sonra direk bir dizin yolu (directory path) da girilebilir. (Yukarıdaki örnekte olduğu gibi) Farkındaysanız tüm yolu tırnak içine aldık, çünkü “Program Files” klasörü boşluk karakteri içeriyordu.
+
+C:\Program Files\Adobe>cd\
+ 
+C:\>
+Kök dizine (root directory) hoop diye çıkmak için, cd\ komutu kullanılır.
+
+Kök dizini değiştirmek için ise,
+
+C:\>D:
+ 
+D:\>
+örneğinde görüldüğü gibi, cd komutuna ihtiyaç yoktur. Direk dizin harfi ve : (iki nokta üst üste) kullanılır.
+
+[Başa Git]
+
+3. md
+md "Yeni Klasör"
+Yukarıdaki md komutu (make directory), bulunulan dizin içerisinde “Yeni Klasör” adında, bir boş dizin oluşturur. Sizde bu komutu uygulayıp ardından “dir” komutu ile “Yeni Klasör” adında bir klasörün oluştuğunu gözlemleyebilirsiniz.
+
+md komutu ile tek cümle ile iç içe dizinler oluşturmanız mümkündür. Mesela:
+
+md dünya\asya\anadolu\ankara\kızılay\starbucks
+Bu komut aşağıdaki iç içe geçmiş dizin yapısını oluşturur. Ne kadar harika değil mi?
+
+C:\DÜNYA
+└───asya
+    └───anadolu
+        └───ankara
+            └───kızılay
+                └───starbucks
+[Başa Git]
+
+4. rd
+rd "Yeni Klasör"
+Yukarıdaki rd komutu (remove directory), bulunulan dizin içerisinde “Yeni Klasör” adındaki dizini eğer boş ise kaldırır. Sizde bu komutu uygulayıp ardından “dir” komutu ile dosya ve dizinleri listeleyerek “Yeni Klasör” adındaki içi tamamen boş klasörünüzün yok olduğunu gözlemleyebilirsiniz.
+
+Tek başına rd komutu ile, içinde herhangi bir şey olan bir klasörü silmeye çalıştığınızda, “Dizin boş değil.” uyarısını alacaksınızdır. Peki bu durumda ne yapılmalı?
+
+rd /s /q "Dolu Klasör"
+/s parametresi ile rd komutu, bir dizini boş olmasa bile siler.
+/q parametresi ise, “Emin misiniz (E/H)?” sorusunu cevaplamaktan sizi kurtarır.
+
+[Başa Git]
+
+5. del
+del (delete) komutu, dosyaları silmek için kullanılır.
+
+del a.txt
+Yukarıdaki komut, bulunulan dizindeki “a.txt” metin dosyasını siler.
+
+Şimdi bir örnek olay düşünelim:
+
+C:\TEST
+│   silbeni.txt
+│
+└───test
+    │   silbeni.txt
+    │
+    └───test
+            silbeni.txt
+Yukarıdaki dizin yapısında, iç içe üç “test” adında klasör ve hepsinin de içinde “silbeni.txt” metin dosyası bulunmakta. Bunların hepsini tek bir kalemde silmek mümkün mü? Cevap: Evet.
+
+C:\>cd test
+ 
+C:\test>del /s /q silbeni.txt
+Silinen dosya - C:\test\silbeni.txt
+Silinen dosya - C:\test\test\silbeni.txt
+Silinen dosya - C:\test\test\test\silbeni.txt
+Soru: Bilgisayarınızdaki C:\ hard disk bölümü üzerindeki, “virus.exe” adlı tüm dosyaları “Emin misiniz (E/H)?” sorusuyla hiç muhatap olmadan silmek için ne yapılmalıdır?
+Cevap:
+
+C:\Users\yigith>cd\
+ 
+C:\>del /s /q virus.exe
+[Başa Git]
+
+6. ren
+ren komutu, dosya ve klasörlerin isimlerini değiştirmemize yarar. Windows arayüzündeki karşılığı “Sağ Tuş Menü > Yeniden Adlandır” butonudur. Örnek kullanım:
+
+ren tldefter.txt teldefteri.txt
+ren resmlerm Resimlerim
+[Başa Git]
+
+7. move
+move komutu, dosya ve klasörleri, bulunduğu dizinden başka bir dizine taşımamıza yarar. (Kes + Yapıştır gibi de düşünülebilir.)
+
+Örnek olarak, “C:\Downloads” dizininde bulunan “rapor.pdf” dosyasını, masaüstünün dizini olan “C:\Users\yigith\Desktop” klasörünün içine taşıyalım.
+
+C:\>move C:\Downloads\rapor.pdf C:\Users\yigith\Desktop
+        1 dosya taşındı.
+[Başa Git]
+
+8. copy
+copy komutu, dosya ve klasörleri, bulunduğu dizinden başka bir dizine kopyalamaya yarar. (Kopyala + Yapıştır gibi de düşünülebilir.)
+
+Örnek olarak, “C:\Downloads” dizininde bulunan “rapor.pdf” dosyasını, masaüstünün dizini olan “C:\Users\yigith\Desktop” klasörünün içine kopyalayalım:
+
+C:\>copy C:\Downloads\rapor.pdf C:\users\yigith\Desktop
+C:\users\yigith\Desktop\rapor.pdf öğesinin üzerine yazılsın mı? (Evet/Hayır/Tümü):
+E
+        1 dosya kopyalandı.
+Soru: MS-DOS komut isteminde, copy veya move komutu kullanılırken, hedef dizinde isim çakışması durumunda karşımıza çıkan “…öğesinin üzerine yazılsın mı? (Evet/Hayır/Tümü):” sorusu hangi parametre ile önlenir?
+Cevap: /y
+
+C:\>copy /y C:\Downloads\rapor.txt C:\users\yigith\Desktop
+        1 dosya kopyalandı.
+[Başa Git]
+
+9. attrib
+Öznitelikler
+Klasör Üzerinde » Sağ Tuş » Özellikler
+
+Hiç bilgisayarınızda bir dosya ya da klasör üzerinde fare/mouse ile sağ tuşla tıklayıp “Özellikler” butonuna tıkladınız mı? Eğer tıkladıysanız soldaki pencere size tanıdık gelmeli.
+
+Soldaki resimde kırmızı dikdörtgen içinde gördüğünüz “Salt okunur“, “Gizli” gibi dosya ve klasör öznitelikleri (attributes) attrib komutu aracılığıyla değiştirilir.
+
+Dosya öznitelikleri MS-DOS komut isteminde hangi harflerle temsil edilir?
+
+Harf	Açılımı	Anlamı	Açıklama
+r	(R)ead-only	Salt Okunur	İçeriği Değiştirilemez
+h	(H)idden	Gizli	Görünmez (Varsayılan)
+a	(A)rchive	Arşiv	Yedekleme için İşaretlenmiş
+s	(S)ystem	Sistem	Görünmez (Varsayılan)
+İşletim Sistemi için Önemli
+attrib +h "Özel Resimlerim"
+Yukarı +h ekindeki “+” ile “Özel Resimlerim” klasörüne, (h)idden/gizli özelliği atamış olduk. Bahşettiğimiz bu özniteliği “Özel Resimlerim” klasöründen kaldırmak için ise:
+
+attrib -h "Özel Resimlerim"
+tahmin edeceğiniz üzere “-h” ekini kullanıyoruz.
+
+Soru: Farzedelim: flash diskinizdeki bir virüs, tüm dosya ve klasörlerinizin aslını gizleyip, aynı isimlerinde benzer görünümlü fake/sahte virüslü kısayollar türetti/oluşturdu. Virüslü kısayolları silip, gizlenmiş dosyalarımızı nasıl görünür yapabiliriz?
+Cevap: Önce virüslü dosyaları virüs programımız aracılığıyla temizleyip sonra gizlenmiş dosyalarımızı aşağıdaki komutla görünür hale getirebiliriz. Komuttaki F: USB diskimizdeki sürücü harfini temsil etmektedir. Onu kendi sürücünüze göre değiştiriniz.
+
+attrib -h -r -s /s /d F:\*.*
+[Başa Git]
+
+10. tree
+tree komutu, isminden de anlaşılabileceği üzere, bir klasörün içerdiği dizinleri, soy ağacı şeklinde görüntüler. Hemen örnek verecek olursak:
+
+C:\>tree Ödevlerim
+Klasör PATH listesi
+Birim Seri Numarası 9C02-0C6D
+C:\ÖDEVLERIM
+├───Fen Bilgisi
+├───Matematik
+├───Sosyal Bilgiler
+│   ├───Coğrafya
+│   └───Tarih
+└───Türkçe
+Görüldüğü gibi, tree Ödevlerim komutu, belirtilen dizindeki tüm içerdiği klasörleri, ağaç yapısında göstermiştir. (Dalların dallarının dallarına kadar)
+
+Peki ağacımızın dalları varsa, yapraklarını nasıl göstertiriz?
+
+Dizinlerle beraber, içerdiği dosyaları da görüntülemek için “/f” parametresini – (f)ile – kullanırız.
+
+C:\>tree /f Ödevlerim
+Klasör PATH listesi
+Birim Seri Numarası 9C02-0C6D
+C:\ÖDEVLERIM
+├───Fen Bilgisi
+│       Dirençler.docx
+│       Işığın Yayılması.docx
+│
+├───Matematik
+│       Kümeler.docx
+│       Problemler.docx
+│
+├───Sosyal Bilgiler
+│   ├───Coğrafya
+│   │       Dünyanın Hareketleri.docx
+│   │       Türkiyede Tarım.docx
+│   │
+│   └───Tarih
+│           Kurtuluş Savaşı.docx
+│           İnkılap Tarihi.docx
+│
+└───Türkçe
+        Sözcükte Anlam.docx
+        İsim Tamlamaları.docx
+[Başa Git]
+
+11. date
+date komutu, bilgisayarın geçerli sistem tarihini görüntülemek ve güncellemek için kullanılır.
+
+Tarihi Değiştirmek için Örnek Kullanım:
+date
+Bugünün tarihi: 29.10.2011
+Yeni tarihi girin: (gg-aa-yy) 30-10-2011
+İpucu: Eğer date komutunu kullandıktan sonra tarihi değiştirmekten vazgeçerseniz hiçbir şey yazmadan sadece “enter” tuşuna basmanız yeterlidir.
+Sadece Tarihi Görüntülemek için Örnek Kullanım:
+date /t
+30.10.2011
+Bu örnekten de anlaşıldığı gibi, /t parametresi, sadece tarihi gösterir.
+[Başa Git]
+
+12. time
+date komutu, bilgisayarın geçerli sistem saatini görüntülemek ve güncellemek için kullanılır.
+
+Saati Değiştirmek için Örnek Kullanım:
+time
+Şu an saat: 20:21:03,00
+Yeni saati girin: 19:21
+İpucu: Eğer time komutunu kullandıktan sonra saati değiştirmekten vazgeçerseniz hiçbir şey yazmadan sadece “enter” tuşuna basmanız yeterlidir.
+Sadece Saati Görüntülemek için Örnek Kullanım:
+time /t
+19:21
+Bu örnekten de anlaşıldığı gibi, /t parametresi, sadece saati gösterir.
+[Başa Git]
+
+13. more
+more komutu, metin dosyalarının içeriğini görüntülemede kullanılır.
+
+more C:\Windows\system.ini
+Bu komut “C:\Windows\system.ini” dosyasının içeriği ekranda görüntüler.
+
+Metin belgesinin içeriği ekrana sığmayacak kadar uzun ise, içerik sayfalar halinde listelenir. Bir sayfa atlamak için “Space/Boşluk” tuşuna, satır atlamak için ise “Enter” tuşuna basılır.
+[Başa Git]
+
+14. copy con
+copy con komutu, MS-DOS komut istemi penceresinde, metin belgesi oluşturmak için kullanılır. Aşağıdaki örnekte olduğu gibi komuttan sonra kaydedilecek dosya ismi yazılır ve “Enter“a basılır.
+
+Tüm yazacaklarımızı yazdıktan sonra “Ctrl” ve “Z” tuş ikilisine beraber basılarak belgeniz kaydedilir ve çıkılır.
+
+Örnek Uygulama:
+
+C:\>copy con yapilacaklar.txt
+* 1kg beyaz peynir al
+* Ayakkabını tamirciye götür
+* Elektrik faturasını öde
+ 
+Not aldığım tarih: 2 Ekim 2011, Çarşamba^Z
+        1 dosya kopyalandı.
+[Başa Git]
+
+15. print
+print komutu, belli bir metin tabanlı belgeyi varsayılan yazıcınız aracılığıyla kağıda dökmek/yazdırmak için kullanılır.
+
+print yapilacaklar.txt
+Eğer metin belgenizi varsayılan yazıcınıza değil de, spesifik/belirli bir yazıcıya göndermek için ise, /D: parametresi kullanılır. (D=Device=Aygıt)
+
+print yapilacaklar.txt /D:"Brother MFC-7420 USB"
+[Başa Git]
+
+16. ipconfig
+Güncelleniyor…
+ipconfig komutu, bilgisayarın sahip olduğu ağ bağdaştırıcılarının geçerli ağ yapılandırmasını listeler. Genellikle daha ayrıntılı görüntülemek için /all parametresi ile kullanılır.
+
+ipconfig /all
+ipconfig /all komutunun ekran çıktısından bir kesit.
+ipconfig /all komutunun ekran çıktısından bir kesit.
+
+[Başa Git]
+
+17. cls
+cls komutu, ms-dos istemcisinin ekranını temizler/sıfırlar.
+
+cls
+Bu komut uygulandıktan sonra, ekranda sadece bulunduğunuz dizinin dosya yolu ve komutunuzu bekleyen yanıp sönen bir imleç kalır.
+
+cls komutundan sonra ms-dos komut istemcisi
+cls komutundan sonra ms-dos komut istemcisi
+
+[Başa Git]
+
+18. exit
+exit komutu, ms-dos komut istemcisinden çıkmak için kullanılır.
+
+exit
+[Başa Git]
+
+19. shutdown
+shutdown komutu, isminden de anlaşılabileceği üzere bilgisayarı kapatmak (shutdown) veya yeniden başlatmak (restart) için kullanılır.
+
+Bilgisayarı kapatmak için /s parametresi ile kullanılır.
+
+shutdown /s
+Bilgisayarı yeniden başlatmak için ise /r parametresi ile kullanılır.
+
+shutdown /r
+[Başa Git]
+
+20. help
+help komutu, tek başına kullanıldığında tüm ms-dos komutlarını ve görevlerini listeler.
+
+Örnek Çıktı:
+
+C:\Users\yigith>help
+ 
+Belirli bir komutla ilgili yardım için HELP komut adı yazın
+ 
+ASSOC          Dosya uzantısı ilişkilendirmesini görüntüler ya da değiştirir.
+ATTRIB         Dosya özniteliklerini görüntüler ya da değiştirir.
+BREAK          Uzatılmış CTRL+C denetimini ayarlar ya da temizler.
+BCDEDIT        Önyükleme yüklemesini denetlemek için önyükleme veritabanındaki
+               özellikleri ayarlar.
+CACLS          Dosyanın erişim denetim listelerini (ACLs) görüntüler ya da
+               değiştirir.
+CALL           Bir başkasından bir toplu iş programını çağırır.
+CD             Geçerli dizinin adını değiştirir ya da görüntüler.
+CHCP           Etkin kod sayfası numarasını görüntüler ya da ayarlar.
+CHDIR          Geçerli dizini değiştirir ya da görüntüler.
+CHKDSK         Bir diski gözden geçirip durum raporu verir.
+CHKNTFS        Önyükleme sırasında disk denetimini görüntüler ya da değiştirir.
+CLS            Ekrandakileri siler.
+CMD            Windows komut yorumcusunun yeni bir kopyasını başlatır.
+COLOR          Varsayılan konsol arka plan ve ön plan renklerini ayarlar.
+COMP           İki dosya ya da dosya kümesinin içeriğini karşılaştırır.
+COMPACT        NTFS bölümündeki dosyaların sıkıştırmasını gösterir ya da yapar.
+CONVERT        FAT birimleri NTFS'ye dönüştürür. Geçerli sürücüyü
+               dönüştüremezsiniz.
+COPY           Bir ya da birden çok dosyayı bir başka konuma kopyalar.
+DATE           Tarihi görüntüler ya da ayarlar.
+DEL            Bir ya da birden çok dosyayı siler.
+DIR            Bir dizindeki dosya ve alt dizin listesini görüntüler.
+DISKCOMP       İki disket içeriğini karşılaştırır.
+DISKCOPY       Bir disketin içeriğini diğerine kopyalar.
+DISKPART       Disk Bölümleme özelliklerini görüntüler ya da yapılandırır.
+DOSKEY         Komut satırı düzenler, Windows komutu geri çağırıp makro
+               oluşturur.
+DRIVERQUERY    Geçerli aygıt sürücü durumunu ve özelliklerini görüntüler.
+ECHO           İletileri görüntüler ya da komut yankısını açar ya da kapatır.
+ENDLOCAL       Bir toplu iş dosyasındaki çevre yerelleştirmesini sonlandırır.
+ERASE          Bir ya da birden çok dosyayı siler.
+EXIT           CMD.EXE programından (komut yorumcusu) çıkar.
+FC             İki dosyayı ya da dosya kümesini karşılaştırıp aralarındaki
+               farkı görüntüler.
+FIND           Bir dosyada ya da dosyalarda bir metin dizesini arar.
+FINDSTR        Dosyalarda dize arar.
+FOR            Dosya kümesindeki her bir dosyada belirli bir komutu çalıştırır.
+FORMAT         Windows'da kullanmak üzere bir diski biçimlendirir.
+FSUTIL         Dosya sistem özelliklerini görüntüler ya da yapılandırır.
+FTYPE          Dosya uzantısı ilişkilendirmesinde kullanılan dosya türlerini
+               görüntüler ya da değiştirir.
+GOTO           Bir toplu iş dosyasında, Windows komut yorumlayıcısını
+               etiketli bir satıra yöneltir.
+GPRESULT       Makine ve kullanıcı için Grup İlke bilgisini görüntüler.
+GRAFTABL       Grafik modunda, Windows'un dile özgü karakterleri
+               görüntülemesini sağlar.
+HELP           Windows komutları için Yardım bilgisi sağlar.
+ICACLS         Dosyalar ve dizinler için ACL'leri görüntüler, değiştirir,
+               yedekler veya geri yükler.
+IF             Bir toplu iş dosyasındaki koşullu işlemleri uygular.
+LABEL          Bir diskin birim etiketini oluşturur, değiştirir ya da siler.
+MD             Bir dizin oluşturur.
+MKDIR          Bir dizin oluşturur.
+MKLINK         Sembolik Bağlantılar ve Sabit Bağlantılar oluşturur
+MODE           Bir sistem aygıtını yapılandırır.
+MORE           Çıktıyı bir defada ekranda görüntüler.
+MOVE           Bir ya da birden çok dosyayı bir dizinden diğerine taşır.
+OPENFILES      Bir dosya paylaşımı için uzaktaki kullanıcıların açtığı
+               dosyaları görüntüler.
+PATH           Çalıştırılabilir dosyalar için bir arama yolu görüntüler ya da
+               ayarlar.
+PAUSE          Bir toplu iş dosyasının işlemesini askıya alıp ileti görüntüler.
+POPD           Geçerli dizinin PUSHD tarafından kaydedilen eski değerini
+               geri yükler.
+PRINT          Bir metin dosyasını yazdırır.
+PROMPT         Windows komut istemini değiştirir.
+PUSHD          Geçerli dizini kaydedip değiştirir.
+RD             Dizin kaldırır.
+RECOVER        Bozuk ya da hasarlı bir diskten okunabilir bilgiyi kurtarır.
+REM            Toplu iş dosyalarındaki ya da CONFIG.SYS'deki açıklamaları
+               (notlar) okur.
+REN            Dosyaları yeniden adlandırır.
+RENAME         Dosyaları yeniden adlandırır.
+REPLACE        Dosyaları yenisiyle değiştirir.
+RMDIR          Dizin kaldırır.
+ROBOCOPY       Dosyaları ve dizin ağaçlarını kopyalamak için kullanılan
+               gelişmiş yardımcı program
+SET            Windows çevre değişkenlerini görüntüler, ayarlar ya da kaldırır.
+SETLOCAL       Toplu iş dosyasındaki çevre değişikliklerinin yerelleştirmesine
+               başlar.
+SC             Hizmetleri (arka plan işlemleri) görüntüler ya da yapılandırır.
+SCHTASKS       Bir bilgisayarda çalışacak komut ve programların
+               zamanlamasını yapar.
+SHIFT          Toplu iş dosyasındaki değiştirilebilir parametre konumunu
+               değiştirir.
+SHUTDOWN       Makinenin yerel ya da uzaktan uygun şekilde kapanmasını sağlar.
+SORT           Girişi sıralar.
+START          Belirli program ya da komutu çalıştırmak için ayrı bir
+               pencere açar.
+SUBST          Bir yolu bir sürücü harfiyle ilişkilendirir.
+SYSTEMINFO     Makineye özgü belirli özellik ve yapılandırmaları görüntüler.
+TASKLIST       Hizmetler de dahil olmak üzere çalışan tüm görevleri görüntüler.
+TASKKILL       Çalışan bir işlem ya da uygulamayı kapatır ya da durdurur.
+TIME           Sistem saatini görüntüler ya da ayarlar.
+TITLE          CMD.EXE oturumu için pencere başlığını belirler.
+TREE           Bir sürücü ya da yolun dizin yapısını grafik olarak
+               görüntüler.
+TYPE           Bir metin dosyasının içeriğini görüntüler.
+VER            Windows sürümünü görüntüler.
+VERIFY         Windows'a, dosyalarınızın diske doğru yazıldığını doğrulayıp
+               doğrulamamasını bildirir.
+VOL            Disk birim etiketi ve seri numarasını görüntüler.
+XCOPY          Dosya ve dizin ağaçlarını kopyalar.
+WMIC           Etkileşimli komut kabuğu içindeki WMI bilgisini görüntüler.
+ 
+Araçlarla ilgili ek bilgi için çevrimiçi yardımda komut satırı
+başvurusuna bakın.
+Herhangi bir komut hakkında, ne işe yaradığı ve hangi parametrelere sahip olduğu gibi konularda yardım almak için ise, önce help sonra da komut ismi yazılır.
+
+Örneğin, dir komutu hakkında bilgi almak için;
+
+help dir
+yazarız ve enter tuşuna basarız.
